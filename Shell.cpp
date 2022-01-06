@@ -1,5 +1,5 @@
 #include "Shell.h"
-
+#include<iomanip>
 void Shell::Prompt()
 {
 	while (true) {
@@ -19,7 +19,8 @@ void Shell::Prompt()
 				cout << "Not Implemented Yet\n";
 				continue;
 			}
-			*(Vfunction[cmd])();
+			//Vfunction[cmd]();
+			(this->*Vfunction[cmd])();
 		}
 
 	}
@@ -46,7 +47,7 @@ void Shell::getCommands(map<string, string>& commands) {
 void Shell::buildFunctionMap(map<string, void(Shell::*) (void)>& mp) {
 	mp.clear();
 	mp["exit"] = &Shell::myExit;
-	//mp["help"] = &Shell::help;
+	mp["help"] = &Shell::help;
 }
 
 void Shell::myExit()
@@ -55,7 +56,31 @@ void Shell::myExit()
 }
 void Shell::help()
 {
-	for (auto it : Shell::commands) {
-		cout << it.first << '\t' << it.second << endl;
+	for (auto it : commands) {
+		cout << "	" << it.first << setw(10 - it.first.size()) << " -> " << it.second << endl;
+	}
+}
+//void Shell::help(string cmd)
+//{
+//	if (cmd == "") {
+//		for (auto it : Shell::commands) {
+//			cout << it.first << '\t' << it.second << endl;
+//		}
+//		return;
+//	}
+//	cout << commands[cmd] << endl;
+//}
+template <class T>
+void Shell::help(std::initializer_list<T> list)
+{
+	if (list.size() == 0)
+		for (auto it : Shell::commands) {
+			cout << it.first << '\t' << it.second << endl;
+		}
+	else {
+		for (auto elem : list)
+		{
+			std::cout << commands[elem] << std::endl;
+		}
 	}
 }
