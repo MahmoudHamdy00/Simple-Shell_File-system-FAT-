@@ -2,7 +2,7 @@
 
 This is a console application to simulate [Shell](https://en.wikipedia.org/wiki/Shell_(computing))
 
-# Supported Commands
+## Supported Commands
 * `exit` : Quit the shell.
 * `quit` : Quit the shell.
 * `clr` : Clear the screen.
