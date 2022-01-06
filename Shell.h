@@ -4,6 +4,7 @@
 #include<iostream>
 #include<sstream>
 #include <cstdarg>
+#include <direct.h>
 ///typedef void(Shell::* voidFunction) (void);
 
 using namespace std;
@@ -12,7 +13,8 @@ class Shell
 {
 public:
 	Shell() {
-		currentDirictory = "E:\\GitHub\\Simple Shell_File system (FAT)";
+		char buff[FILENAME_MAX];
+		currentDirictory = string(_getcwd(buff, FILENAME_MAX));
 		getCommands(commands);
 		buildFunctionMap(Vfunction);
 	}
