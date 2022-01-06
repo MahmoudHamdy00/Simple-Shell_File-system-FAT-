@@ -36,6 +36,7 @@ private:
 	void help(vector<string>);
 	void clear();
 	void dir();
+	void mkdir(vector<string>);
 	//void help(...);
 
 };

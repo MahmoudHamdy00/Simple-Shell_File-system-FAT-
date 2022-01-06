@@ -42,6 +42,7 @@ void Shell::getCommands(map<string, string>& commands) {
 	commands["copy"] = "Copies one or more files to another location";
 	commands["del"] = "Deletes one or more files.";
 	commands["md"] = "Creates a directory.";
+	commands["mkdir"] = "Creates a directory.";
 	commands["rd"] = "Removes a directory.";
 	commands["rename"] = "Renames a file.";
 	commands["type"] = "Displays the contents of a text file.";
@@ -59,6 +60,8 @@ void Shell::buildFunctionMap(map<string, void(Shell::*) (void)>& mp) {
 void Shell::buildFunctionMap(map<string, void(Shell::*) (vector<string>)>& mp) {
 	mp.clear();
 	mp["help"] = &Shell::help;
+	mp["md"] = &Shell::mkdir;
+	mp["mkdir"] = &Shell::mkdir;
 }
 void Shell::myExit()
 {
@@ -84,6 +87,18 @@ void Shell::clear()
 void Shell::dir()
 {
 	system("dir");
+}
+void Shell::mkdir(vector<string>parameters)
+{
+	if (parameters.size() != 1) {
+		cout << "The syntax of the command is incorrect.\n";
+	}
+	string dirictoryName = parameters[0];
+	char* char_arr;
+	char_arr = &dirictoryName[0];
+	if (!~_mkdir(char_arr))//when equal -1 -> failed   (!~-1 ==0)
+		cout << "Faild to create dirictory\n";
+
 }
 template <class T>
 void Shell::help(std::initializer_list<T> list)
