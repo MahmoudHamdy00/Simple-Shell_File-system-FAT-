@@ -10,7 +10,7 @@ void Shell::Prompt()
 		stringstream data(curLine);
 		string cmd;
 		data >> cmd;
-
+		if (cmd.empty())continue;
 		if (commands.find(cmd) == commands.end()) {
 			cout << '\'' << cmd << "\' is not recognized as an internal or external command,operable program or batch file.\n";
 		}
