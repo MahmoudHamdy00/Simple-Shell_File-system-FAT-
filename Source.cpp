@@ -1,28 +1,8 @@
 #include "Shell.h"
-#include<iostream>
-#include<map>
-typedef void(*voidFunction) (void);
-typedef long long ll;
-void v() {
-	std::cout << "FgggggggggggF";
-}
-void vv(std::map<std::string, voidFunction>& mp) {
-	mp.clear();
-	mp["dd"] = &v;
-
-}
-template <class T>
-void func2(std::initializer_list<T> list)
-{
-	for (auto elem : list)
-	{
-		std::cout << elem << std::endl;
-	}
-}
+string developer = "Mahmoud Hamdy";
+string version = "[Version 1.0]";
 int main() {
+	cout << developer << " " << version << "\n\n";
 	Shell shell;
 	shell.Prompt();
-	//shell.help();
-	//shell.help({ "dir" });
-
 }

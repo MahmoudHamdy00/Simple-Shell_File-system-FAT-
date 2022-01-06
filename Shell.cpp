@@ -1,7 +1,6 @@
 #include "Shell.h"
-#include<iomanip>
-void Shell::Prompt()
-{
+#include <iomanip>
+void Shell::Prompt() {
 	while (true) {
 		cout << currentDirictory << ">";
 		string curLine;
@@ -25,7 +24,8 @@ void Shell::Prompt()
 				(this->*VfunctionWithPars[cmd])(parameters);
 			}
 			else
-				cout << "Not Implemented Yet\n";
+				cout << "Not Implemented Yet";
+			cout << endl;
 		}
 
 	}
@@ -68,13 +68,11 @@ void Shell::buildFunctionMap(map<string, void(Shell::*) (vector<string>)>& mp) {
 	mp["rmdir"] = &Shell::rmdir;
 	mp["cat"] = &Shell::cat;
 }
-void Shell::myExit()
-{
+void Shell::myExit() {
 	exit(0);
 }
 
-void Shell::help(vector<string>parameters)
-{
+void Shell::help(vector<string>parameters) {
 	if (parameters.empty()) {
 		for (auto it : commands) {
 			cout << "	" << it.first << setw(10 - it.first.size()) << " -> " << it.second << endl;
@@ -85,16 +83,13 @@ void Shell::help(vector<string>parameters)
 		cout << commands[parameters[0]] << endl;
 	else cout << "This command is not supported by the help utility.\n";
 }
-void Shell::clear()
-{
+void Shell::clear() {
 	system("clear");
 }
-void Shell::dir()
-{
+void Shell::dir() {
 	system("dir");
 }
-void Shell::mkdir(vector<string>parameters)
-{
+void Shell::mkdir(vector<string>parameters) {
 	if (parameters.size() != 1) {
 		cout << "The syntax of the command is incorrect.\n";
 		return;
@@ -106,8 +101,7 @@ void Shell::mkdir(vector<string>parameters)
 		cout << "Faild to create dirictory\n";
 
 }
-void Shell::rmdir(vector<string>parameters)
-{
+void Shell::rmdir(vector<string>parameters) {
 	if (parameters.size() == 0) {
 		cout << "The syntax of the command is incorrect.\n";
 		return;
@@ -119,8 +113,7 @@ void Shell::rmdir(vector<string>parameters)
 			cout << cur << " :The system cannot find the file specified.\n";
 	}
 }
-void Shell::cat(vector<string>parameters)
-{
+void Shell::cat(vector<string>parameters) {
 	if (parameters.size() == 0) {
 		cout << "The syntax of the command is incorrect.\n";
 		return;
@@ -129,19 +122,5 @@ void Shell::cat(vector<string>parameters)
 		cur = "cat " + cur;
 		const char* char_arr = &cur[0];
 		system(char_arr);
-	}
-}
-template <class T>
-void Shell::help(std::initializer_list<T> list)
-{
-	if (list.size() == 0)
-		for (auto it : Shell::commands) {
-			cout << it.first << '\t' << it.second << endl;
-		}
-	else {
-		for (auto elem : list)
-		{
-			std::cout << commands[elem] << std::endl;
-		}
 	}
 }

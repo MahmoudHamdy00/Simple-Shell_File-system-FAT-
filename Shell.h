@@ -3,13 +3,9 @@
 #include<map>
 #include<iostream>
 #include<sstream>
-#include <cstdarg>
 #include <direct.h>
 #include <vector>
-///typedef void(Shell::* voidFunction) (void);
-
 using namespace std;
-
 class Shell
 {
 public:
@@ -21,12 +17,9 @@ public:
 		buildFunctionMap(VfunctionWithPars);
 	}
 	void Prompt();
+private:
 	map<string, void(Shell::*) (void)>Vfunction;
 	map<string, void(Shell::*) (vector<string>)>VfunctionWithPars;
-
-	template <class T>
-	void help(std::initializer_list<T> list);
-private:
 	string currentDirictory;
 	map<string, string>commands;
 	void getCommands(map<string, string>& commands);
@@ -39,7 +32,5 @@ private:
 	void mkdir(vector<string>);
 	void rmdir(vector<string>);
 	void cat(vector<string>);
-	//void help(...);
-
 };
 
