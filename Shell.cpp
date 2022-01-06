@@ -48,6 +48,7 @@ void Shell::getCommands(map<string, string>& commands) {
 void Shell::buildFunctionMap(map<string, void(Shell::*) (void)>& mp) {
 	mp.clear();
 	mp["exit"] = &Shell::myExit;
+	mp["quit"] = &Shell::myExit;
 	mp["help"] = &Shell::help;
 	mp["clr"] = &Shell::clear;
 	mp["dir"] = &Shell::dir;
