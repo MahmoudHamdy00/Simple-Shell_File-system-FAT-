@@ -38,6 +38,7 @@ private:
 	void dir();
 	void mkdir(vector<string>);
 	void rmdir(vector<string>);
+	void cat(vector<string>);
 	//void help(...);
 
 };

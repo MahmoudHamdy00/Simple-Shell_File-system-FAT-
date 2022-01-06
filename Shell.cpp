@@ -34,6 +34,7 @@ void Shell::getCommands(map<string, string>& commands) {
 	commands.clear();
 	commands["cd"] = "Change the current default directory to.If the argument is not present, report the current directory.If the directory does not exist an appropriate error should be reported.";
 	commands["clr"] = "Clear the screen.";
+	commands["cat"] = "Concatenate FILE(s) to standard output.";
 	commands["dir"] = "List the contents of directory .";
 	commands["help"] = "Display the user manual using the more filter.";
 	commands["help"] += ",Provides Help information for commands.";
@@ -65,6 +66,7 @@ void Shell::buildFunctionMap(map<string, void(Shell::*) (vector<string>)>& mp) {
 	mp["mkdir"] = &Shell::mkdir;
 	mp["rd"] = &Shell::rmdir;
 	mp["rmdir"] = &Shell::rmdir;
+	mp["cat"] = &Shell::cat;
 }
 void Shell::myExit()
 {
@@ -115,6 +117,18 @@ void Shell::rmdir(vector<string>parameters)
 		char_arr = &cur[0];
 		if (!~_rmdir(char_arr))//when equal (-1) -> failed   (!~-1 ==0)
 			cout << cur << " :The system cannot find the file specified.\n";
+	}
+}
+void Shell::cat(vector<string>parameters)
+{
+	if (parameters.size() == 0) {
+		cout << "The syntax of the command is incorrect.\n";
+		return;
+	}
+	for (string cur : parameters) {
+		cur = "cat " + cur;
+		const char* char_arr = &cur[0];
+		system(char_arr);
 	}
 }
 template <class T>
