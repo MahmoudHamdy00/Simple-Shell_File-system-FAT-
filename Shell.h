@@ -30,6 +30,7 @@ private:
 	void buildFunctionMap(map<string, void(Shell::*) (void)>& mp);
 	void myExit();
 	void help();
+	void clear();
 	//void help(...);
 
 };

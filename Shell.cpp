@@ -48,6 +48,7 @@ void Shell::buildFunctionMap(map<string, void(Shell::*) (void)>& mp) {
 	mp.clear();
 	mp["exit"] = &Shell::myExit;
 	mp["help"] = &Shell::help;
+	mp["clr"] = &Shell::clear;
 }
 
 void Shell::myExit()
@@ -59,6 +60,10 @@ void Shell::help()
 	for (auto it : commands) {
 		cout << "	" << it.first << setw(10 - it.first.size()) << " -> " << it.second << endl;
 	}
+}
+void Shell::clear()
+{
+	system("clear");
 }
 //void Shell::help(string cmd)
 //{
