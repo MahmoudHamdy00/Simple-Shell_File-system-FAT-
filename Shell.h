@@ -31,6 +31,7 @@ private:
 	void myExit();
 	void help();
 	void clear();
+	void dir();
 	//void help(...);
 
 };

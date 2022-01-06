@@ -21,6 +21,7 @@ void Shell::Prompt()
 			}
 			//Vfunction[cmd]();
 			(this->*Vfunction[cmd])();
+			cout << endl;
 		}
 
 	}
@@ -49,6 +50,7 @@ void Shell::buildFunctionMap(map<string, void(Shell::*) (void)>& mp) {
 	mp["exit"] = &Shell::myExit;
 	mp["help"] = &Shell::help;
 	mp["clr"] = &Shell::clear;
+	mp["dir"] = &Shell::dir;
 }
 
 void Shell::myExit()
@@ -64,6 +66,10 @@ void Shell::help()
 void Shell::clear()
 {
 	system("clear");
+}
+void Shell::dir()
+{
+	system("dir");
 }
 //void Shell::help(string cmd)
 //{
